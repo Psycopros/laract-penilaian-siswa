@@ -11,6 +11,7 @@ use App\Http\Controllers\JurusanControllers;
 use App\Http\Controllers\MapelControllers;
 use App\Http\Controllers\KelasControllers;
 use App\Http\Controllers\SiswaControllers;
+use App\Http\Controllers\MengajarController;
 
 
 /*
@@ -98,4 +99,14 @@ route::prefix('siswa')->group(function () {
     route::get('/edit/{siswa}', [SiswaControllers::class, 'edit']);
     route::post('/update/{siswa}', [SiswaControllers::class, 'update']);
     route::get('/destroy/{siswa}', [SiswaControllers::class, 'destroy']);
+});
+
+//mengajar
+route::prefix('mengajar')->group(function () {
+    route::get('/index', [MengajarController::class, 'index']);
+    route::get('/create', [MengajarController::class, 'create']);
+    route::post('/store', [MengajarController::class, 'store']);
+    route::get('/edit/{mengajar}', [MengajarController::class, 'edit']);
+    route::post('/update/{mengajar}', [MengajarController::class, 'update']);
+    route::get('/destroy/{mengajar}', [MengajarController::class, 'destroy']);
 });
