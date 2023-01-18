@@ -11,7 +11,8 @@ use App\Http\Controllers\JurusanControllers;
 use App\Http\Controllers\MapelControllers;
 use App\Http\Controllers\KelasControllers;
 use App\Http\Controllers\SiswaControllers;
-use App\Http\Controllers\MengajarController;
+use App\Http\Controllers\MengajarControllers;
+use App\Http\Controllers\NilaiControllers;
 
 
 /*
@@ -25,14 +26,14 @@ use App\Http\Controllers\MengajarController;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// });
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -45,6 +46,13 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+//Login
+Route::get('/', [IndexController::class, 'index']);
+Route::get('/login/admin', [IndexController::class, 'loginAdmin']);
+Route::get('/login/guru', [IndexController::class, 'loginSiswa']);
+Route::get('/login/siswa', [IndexController::class, 'loginGuru']);
+Route::get('/logout', [IndexController::class, 'logout']);
 
 
 //HomePage
@@ -103,10 +111,20 @@ route::prefix('siswa')->group(function () {
 
 //mengajar
 route::prefix('mengajar')->group(function () {
-    route::get('/index', [MengajarController::class, 'index']);
-    route::get('/create', [MengajarController::class, 'create']);
-    route::post('/store', [MengajarController::class, 'store']);
-    route::get('/edit/{mengajar}', [MengajarController::class, 'edit']);
-    route::post('/update/{mengajar}', [MengajarController::class, 'update']);
-    route::get('/destroy/{mengajar}', [MengajarController::class, 'destroy']);
+    route::get('/index', [MengajarControllers::class, 'index']);
+    route::get('/create', [MengajarControllers::class, 'create']);
+    route::post('/store', [MengajarControllers::class, 'store']);
+    route::get('/edit/{mengajar}', [MengajarControllers::class, 'edit']);
+    route::post('/update/{mengajar}', [MengajarControllers::class, 'update']);
+    route::get('/destroy/{mengajar}', [MengajarControllers::class, 'destroy']);
+});
+
+//nilai
+route::prefix('nilai')->group(function () {
+    route::get('/index', [NilaiControllers::class, 'index']);
+    route::get('/create', [NilaiControllers::class, 'create']);
+    route::post('/store', [NilaiControllers::class, 'store']);
+    route::get('/edit/{nilai}', [NilaiControllers::class, 'edit']);
+    route::post('/update/{nilai}', [NilaiControllers::class, 'update']);
+    route::get('/destroy/{nilai}', [NilaiControllers::class, 'destroy']);
 });

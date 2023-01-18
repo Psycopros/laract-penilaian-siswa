@@ -193,6 +193,13 @@ body {
   
   table{
     margin-bottom: 20px;
+    /* element yang gw tambah */
+    border: #333;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(40, 154, 199);
+    padding: 25px;
+    border-radius: 10px;
   }
   th {
     border-bottom: 1px solid black;
