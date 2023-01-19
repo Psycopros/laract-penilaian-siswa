@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Nilai;
-use App\Models\Kelas;
+use App\Models\Siswa;
 use App\Models\Mengajar;
 
 
@@ -21,16 +21,17 @@ class NilaiControllers extends Controller
 
         // if (session('user')->role == 'guru') {
         //     $nilai = Nilai::whereHas('mengajar', function ($query){
-        //         $query = 
-        //     });
+        //         $query->where('guru_id', session('user')->id);
+        //     })->get();
         // } else {
-        //     # code...
+        //     $nilai = Nilai::where('nis',session('user')->nis)->get();
         // }
-        
+        // return view('nilai.index', ['nilai' => $nilai]);
 
-        return view('guru.index', [
-            'guru' => Guru::all()
+        return view('nilai.index', [
+            'nilai' =>Nilai::all()
         ]);
+
     }
 
     /**
@@ -40,7 +41,10 @@ class NilaiControllers extends Controller
      */
     public function create()
     {
-        //
+        return view('nilai.create', [
+            'mengajar' => Mengajar::all(),
+            'siswa' => Siswa::all()
+        ]);
     }
 
     /**
@@ -51,7 +55,18 @@ class NilaiControllers extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data_nilai = $request->validate([
+            'mengajar_id' => 'required',
+            'siswa_id' => 'required',
+            'uh' => 'required',
+            'uts' => 'required',
+            'uas' => 'required'
+        ]);
+
+        $data_nilai['na'] = ($request->uh + $request->uts + $request->uas) / 3;
+
+        Nilai::create($data_nilai);
+        return redirect('/nilai/index')->with('success', "Data Jurusan berhasil Di tambah");
     }
 
     /**
@@ -60,9 +75,9 @@ class NilaiControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Nilai $nilai)
     {
-        //
+        
     }
 
     /**
@@ -71,9 +86,13 @@ class NilaiControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Nilai $nilai)
     {
-        //
+        return view('nilai.edit', [
+            'nilai' => $nilai,
+            'mengajar' => Mengajar::all(),
+            'siswa' => Siswa::all()
+        ]);
     }
 
     /**
@@ -83,9 +102,20 @@ class NilaiControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Nilai $nilai)
     {
-        //
+        $data_nilai = $request->validate([
+            'mengajar_id' => 'required',
+            'siswa_id' => 'required',
+            'uh' => 'required',
+            'uts' => 'required',
+            'uas' => 'required'
+        ]);
+
+        $data_nilai['na'] = ($request->uh + $request->uts + $request->uas) / 3;
+
+        $nilai->update($data_nilai);
+        return redirect('/nilai/index')->with('success', "Data Jurusan berhasil Di edit");
     }
 
     /**
@@ -94,8 +124,9 @@ class NilaiControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Nilai $nilai )
     {
-        //
+       $nilai->delete();
+       return redirect('/nilai/index')->with('success', "Data Jurusan berhasil Di edit");
     }
 }

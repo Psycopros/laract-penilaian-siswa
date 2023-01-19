@@ -1,6 +1,6 @@
 import { usePage } from "@inertiajs/inertia-react";
 import React from "react";
-import "../../css/style.css"
+import "../../css/style.css";
 import Layout from "./Main/Layout.jsx";
 
 const Home = () => {
