@@ -32,9 +32,16 @@ export default function Layout({children}){
                   </div>
                    
                 ) : ( 
-                    <a href="/nilai/index"></a>
+                    <div>
+                    <a href="/nilai/index">Nilai</a>
+
+                    </div>
+
                 )
+                
             }
+
+                    <a href="/logout">Logout</a>
 
             </b>
         </div>

@@ -3,9 +3,9 @@
     <center>
         <b>
             <h2>LIST NiLai</h2>
-            {{-- @if (session('user')-> role == 'guru') --}}
+            @if (session('user')-> role == 'guru')
             <a href="/nilai/create" class="button-primary">Tambah Data</a>
-            {{-- @endif --}}
+            @endif
             
             <table cellpading="10">
                 <tr>
@@ -16,9 +16,9 @@
                     <th>UTS</th>
                     <th>UAS</th>
                     <th>NA</th>
-                    {{-- @if (session('user')-> role == 'guru') --}}
+                    @if (session('user')-> role == 'guru')
                     <th>Action</th>
-                    {{-- @endif --}}
+                    @endif
                     
                 </tr>
 
@@ -31,12 +31,12 @@
                     <td>{{$each->uts}}</td>
                     <td>{{$each->uas}}</td>
                     <td>{{$each->na}}</td>
-                    {{-- @if (session('user')-> role == 'guru') --}}
+                    @if (session('user')-> role == 'guru')
                     <td>
                         <a href="/nilai/edit/{{$each->id}}" class="button-warning">Edit</a>
                         <a href="/nilai/destroy/{{$each->id}}" class="button-danger" onclick="return confirm('Yakin Hapus?')">Hapus</a>
                     </td>
-                    {{-- @endif --}}
+                    @endif
                     
 
                 </tr>

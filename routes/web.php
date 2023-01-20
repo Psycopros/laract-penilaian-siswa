@@ -50,9 +50,9 @@ require __DIR__.'/auth.php';
 //Login
 Route::get('/', [IndexController::class, 'index']);
 Route::post('/login/admin', [IndexController::class, 'loginAdmin']);
-Route::post('/login/guru', [IndexController::class, 'loginSiswa']);
-Route::post('/login/siswa', [IndexController::class, 'loginGuru']);
-Route::post('/logout', [IndexController::class, 'logout']);
+Route::post('/login/guru', [IndexController::class, 'loginGuru']);
+Route::post('/login/siswa', [IndexController::class, 'loginSiswa']);
+Route::get('/logout', [IndexController::class, 'logout']);
 
 
 //HomePage

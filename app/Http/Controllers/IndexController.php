@@ -36,4 +36,35 @@ class IndexController extends Controller
 
        return redirect('/home');
     }
+
+    public function loginGuru(Request $request)
+    {
+        $guru = Guru::where('nip', $request->nip)->where('password', $request->password)->first();
+
+       if (!$guru) return back()->with('error',"NIP Atau Password Salah");
+        
+       $guru->role = 'guru';
+       session(['user' => $guru]);
+
+       return redirect('/home');
+    }
+
+    public function loginSiswa(Request $request)
+    {
+        $siswa = Siswa::where('nis', $request->nis)->where('password', $request->password)->first();
+
+       if (!$siswa) return back()->with('error',"Nis Atau Password Salah");
+        
+       $siswa->role = 'siswa';
+       session(['user' => $siswa]);
+
+       return redirect('/home');
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
 }
