@@ -49,10 +49,10 @@ require __DIR__.'/auth.php';
 
 //Login
 Route::get('/', [IndexController::class, 'index']);
-Route::get('/login/admin', [IndexController::class, 'loginAdmin']);
-Route::get('/login/guru', [IndexController::class, 'loginSiswa']);
-Route::get('/login/siswa', [IndexController::class, 'loginGuru']);
-Route::get('/logout', [IndexController::class, 'logout']);
+Route::post('/login/admin', [IndexController::class, 'loginAdmin']);
+Route::post('/login/guru', [IndexController::class, 'loginSiswa']);
+Route::post('/login/siswa', [IndexController::class, 'loginGuru']);
+Route::post('/logout', [IndexController::class, 'logout']);
 
 
 //HomePage

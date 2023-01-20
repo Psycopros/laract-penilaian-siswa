@@ -49,25 +49,25 @@ return(
             <b><a href="#" className="active">Home</a></b>
         </div>
 
-        <div className="kiri content">
+        <div className="kiri-atas">
             <fieldset>
                 <legend></legend>
                 <center>
-                    <button className="button" onClick={()=>{
+                    <button className="button-primary" onClick={()=>{
                         setFormAdminVisible(!formAdminVisible);
                         setFormGuruVisible(false);
                         setFormSiswaVisible(false);
                     }}
                     >Admin</button>
 
-                    <button className="button" onClick={()=>{
+                    <button className="button-primary" onClick={()=>{
                         setFormAdminVisible(false);
                         setFormGuruVisible(!formGuruVisible);
                         setFormSiswaVisible(false);
                     }}
                     >Guru</button>
 
-                    <button className="button" onClick={()=>{
+                    <button className="button-primary" onClick={()=>{
                         setFormAdminVisible(false);
                         setFormGuruVisible(false);
                         setFormSiswaVisible(!formSiswaVisible);
@@ -79,14 +79,17 @@ return(
                     <hr />
 
                     </center>
+                    
 
                     {/* ---------- Form Login Admin ---------- */}
 
                     <center>
+                    <br />
+                    <br />
 
                         <div style={{ display:formAdminVisible ? "block" : "none"}}>
 
-                            <table>
+                            <table width="50%">
 
                                 <tr>
                                     <td width="25%">Kode Admin</td>
@@ -105,7 +108,7 @@ return(
                                 <tr>
                                     <td colSpan="2">
                                         <center>
-                                            <button className="button" type="button" 
+                                            <button className="button-primary" type="button" 
                                                     onClick={handleLoginAdmin}>
                                                 Login
                                             </button>
@@ -129,7 +132,7 @@ return(
 
                         <div style={{ display:formGuruVisible ? "block" : "none"}}>
 
-                            <table>
+                            <table width="50%">
 
                                 <tr>
                                     <td width="25%">NIP</td>
@@ -148,7 +151,7 @@ return(
                                 <tr>
                                     <td colSpan="2">
                                         <center>
-                                            <button className="button" type="button" 
+                                            <button className="button-primary" type="button" 
                                                     onClick={handleLoginGuru}>
                                                 Login
                                             </button>
@@ -166,13 +169,68 @@ return(
 
                     </center>
 
-                    
+                    {/* ---------- Form Login Guru ---------- */}
+
+                    <center>
+
+                        <div style={{ display:formSiswaVisible ? "block" : "none"}}>
+
+                            <table>
+
+                                <tr>
+                                    <td width="25%">NIS</td>
+                                    <td width="25%">
+                                        <input type="text" onChange={(e)=>
+                                            setNis(e.target.value)} />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="25%">Password</td>
+                                    <td>
+                                        <input type="password" onChange={(e) =>
+                                            setPassword(e.target.value)}/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colSpan="2">
+                                        <center>
+                                            <button className="button-primary" type="button" 
+                                                    onClick={handleLoginSiswa}>
+                                                Login
+                                            </button>
+                                        </center>
+
+                                    </td>
+                                </tr>
+                                
 
 
-                
+                            </table>
+                        
+
+                    </div>
+
+                    </center>
             </fieldset>
-
         </div>
+
+                    <div className="kanan">
+                        <center>
+                            <h1>Selamat Datang
+                                <br />
+                                Di Website SMKN 1 Cibinong
+                            </h1>
+                        </center>
+                    </div>
+
+                    <div className="kiri-bawah">
+                        <center>
+                            <p className="gallery"></p>
+                            <img src="/gambar/g2.jpg" alt="" />
+                            <div className="">SMK bisa</div>
+                        </center>
+                    </div>             
+        
 
     </div>
     

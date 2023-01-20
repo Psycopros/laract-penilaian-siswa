@@ -20,7 +20,7 @@ export default function Layout({children}){
         <div className="menu">
             <b>
                 <a href="/home">Home</a>
-                {/* {user?.role == 'admin' ? ( */}
+                {user?.role == 'Admin' ? (
                   <div>
                      <a href="/guru/index">Guru</a>
                      <a href="/jurusan/index">Jurusan</a>
@@ -31,10 +31,10 @@ export default function Layout({children}){
 
                   </div>
                    
-                {/* ) : (  */}
+                ) : ( 
                     <a href="/nilai/index"></a>
-                {/* ) */}
-            {/* } */}
+                )
+            }
 
             </b>
         </div>
